@@ -1,8 +1,4 @@
-extends KinematicBody2D
-
-export var speed := 150
-
-var velocity := Vector2.ZERO
+extends Character
 
 onready var bow : Node2D = $Bow
 onready var animation_player : AnimationPlayer = $AnimationPlayer
@@ -12,24 +8,23 @@ signal attack(rotation)
 
 
 func _physics_process(_delta: float) -> void:
-	var direction : Vector2 = get_direction()
 	var mouse_position : Vector2 = get_global_mouse_position()
 	var mouse_angle = (mouse_position - global_position).angle()
+
+	bow.rotation = mouse_angle
+	flip_sprite(mouse_position)
 
 	if Input.is_action_pressed("m1"):
 		emit_signal("attack", mouse_angle)
 
-	if direction != Vector2.ZERO:
+	get_direction()
+
+	if move_direction != Vector2.ZERO:
 		animation_player.play("sprint")
 	else:
 		animation_player.play("idle")
 
-	flip_sprite(mouse_position)
-
-	velocity = direction * speed
-	velocity = move_and_slide(velocity)
-
-	bow.rotation = mouse_angle
+	._physics_process(_delta)
 
 
 func flip_sprite(mouse_position: Vector2) -> void:
@@ -41,5 +36,5 @@ func flip_sprite(mouse_position: Vector2) -> void:
 		sprite.flip_h = true
 
 
-func get_direction() -> Vector2:
-	return Input.get_vector("move_left", "move_right", "move_up", "move_down")
+func get_direction() -> void:
+	move_direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")

@@ -96,6 +96,7 @@ script = ExtResource( 2 )
 __meta__ = {
 "_edit_lock_": true
 }
+speed = 100
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 1 )

@@ -99,13 +99,13 @@ __meta__ = {
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 1 )
-offset = Vector2( 0, -16 )
+offset = Vector2( 0, -8 )
 hframes = 9
 
 [node name="Bow" parent="." instance=ExtResource( 3 )]
+position = Vector2( 0, 0 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 0, -8 )
 shape = SubResource( 6 )
 __meta__ = {
 "_edit_group_": true

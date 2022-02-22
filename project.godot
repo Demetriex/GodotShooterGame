@@ -9,10 +9,25 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "KinematicBody2D",
+"class": "Character",
+"language": "GDScript",
+"path": "res://src/Character.gd"
+}, {
+"base": "Resource",
+"class": "ChaseState",
+"language": "GDScript",
+"path": "res://src/enemy/ChaseState.gd"
+}, {
 "base": "",
 "class": "GitAPI",
 "language": "NativeScript",
 "path": "res://addons/godot-git-plugin/git_api.gdns"
+}, {
+"base": "Resource",
+"class": "IdleState",
+"language": "GDScript",
+"path": "res://src/enemy/IdleState.gd"
 }, {
 "base": "Resource",
 "class": "StateMachine",
@@ -25,7 +40,10 @@ _global_script_classes=[ {
 "path": "res://addons/fsm/StateMachineFactory.gd"
 } ]
 _global_script_class_icons={
+"Character": "",
+"ChaseState": "",
 "GitAPI": "",
+"IdleState": "",
 "StateMachine": "",
 "StateMachineFactory": ""
 }

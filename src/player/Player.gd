@@ -1,11 +1,12 @@
 extends KinematicBody2D
 
-var speed := 150
+export var speed := 150
+
 var velocity := Vector2.ZERO
 
-onready var sprite : Sprite = $Sprite
 onready var bow : Node2D = $Bow
 onready var animation_player : AnimationPlayer = $AnimationPlayer
+onready var sprite : Sprite = $Sprite
 
 signal attack(rotation)
 
@@ -23,18 +24,21 @@ func _physics_process(_delta: float) -> void:
 	else:
 		animation_player.play("idle")
 
+	flip_sprite(mouse_position)
+
 	velocity = direction * speed
 	velocity = move_and_slide(velocity)
 
-	flip_sprite(direction)
 	bow.rotation = mouse_angle
 
 
-func flip_sprite(direction: Vector2) -> void:
-	if direction.x < 0:
-		sprite.scale.x = -1
-	elif direction.x > 0:
-		sprite.scale.x = 1
+func flip_sprite(mouse_position: Vector2) -> void:
+	var mouse_direction = (mouse_position - global_position).normalized()
+
+	if mouse_direction.x > 0 and sprite.flip_h:
+		sprite.flip_h = false
+	elif mouse_direction.x < 0 and not sprite.flip_h:
+		sprite.flip_h = true
 
 
 func get_direction() -> Vector2:

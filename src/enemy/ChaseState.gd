@@ -7,7 +7,7 @@ func _init() -> void:
 	input_enabled = false
 	leave_state_enabled = false
 
-func _physics_process(_delta: float) -> void:
+func _physics_process(_delta : float) -> void:
 	target.get_direction()
 	target.flip_sprite()
 

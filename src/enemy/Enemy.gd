@@ -29,34 +29,34 @@ func _ready() -> void:
 		]
 	})
 
+	animation_player.play("idle")
 
-func _physics_process(_delta: float) -> void:
+func _physics_process(_delta : float) -> void:
 	line_2d.global_position = Vector2.ZERO
 	if level_navigation and player:
 		generate_path()
-	
+
 	state_machine._physics_process(_delta)
-
 	._physics_process(_delta)
-
 
 func generate_path() -> void:
 	path = level_navigation.get_simple_path(global_position, player.global_position, false)
 	line_2d.points = path
 
 func get_direction() -> void:
-	var return_value : Vector2 = Vector2.ZERO
-
 	if path.size() > 0:
-		return_value = global_position.direction_to(path[1])
+		move_direction = global_position.direction_to(path[1])
 
 		if global_position == path[0]:
 			path.remove(0)
-
-	move_direction = return_value
 
 func flip_sprite() -> void:
 	if move_direction.x > 0 and sprite.flip_h:
 		sprite.flip_h = false
 	elif move_direction.x < 0 and not sprite.flip_h:
 		sprite.flip_h = true
+
+func take_damage(damage : int) -> void:
+	.take_damage(damage)
+	if hp == 0:
+		queue_free()

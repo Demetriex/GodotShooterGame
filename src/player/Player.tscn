@@ -119,4 +119,4 @@ anims/hit = SubResource( 3 )
 anims/idle = SubResource( 4 )
 anims/sprint = SubResource( 5 )
 
-[connection signal="attack" from="." to="Bow" method="_on_Player_attack"]
+[node name="Hitbox" type="Area2D" parent="."]

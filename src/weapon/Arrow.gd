@@ -1,6 +1,7 @@
 extends Area2D
 
 export var speed := 500
+export var damage := 2
 var direction: Vector2
 
 onready var animation_player := $AnimationPlayer
@@ -18,5 +19,4 @@ func delete() -> void:
 
 
 func _on_Arrow_body_entered(body: Node) -> void:
-	if body.is_in_group("world"):
-		animation_player.play("fade_out")
+	animation_player.play("fade_out")

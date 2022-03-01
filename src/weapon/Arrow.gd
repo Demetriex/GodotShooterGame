@@ -18,5 +18,5 @@ func delete() -> void:
 	queue_free()
 
 
-func _on_Arrow_body_entered(body: Node) -> void:
+func _on_Arrow_body_entered(_body: Node) -> void:
 	animation_player.play("fade_out")
